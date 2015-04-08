@@ -9,6 +9,26 @@ module.exports = new arenaService();
 function arenaService () {
   var self = this;
 
+  var buildNames = function(heroNames, fail) {
+    var names = [];
+    heroNames.forEach(function (name) {
+      var upperName = name.replace(/\W/gi, '').toUpperCase();
+      if(names.indexOf(upperName) >= 0) {
+        if(fail) fail('중복된 영웅 이름이 있습니다.');
+        return false;
+      } else {
+        names.push(upperName);
+      }
+    });
+    if(names.length != 5) {
+      if(fail) fail('조합의 구성 영웅이 5이 아닙니다.');
+      return false;
+    } else {
+      names.sort();
+      return names.join(';');
+    }
+  };
+
   self.list = function (success, fail) {
     var q = Depender.find({ deleted: false }).populate('attackers').exec();
     q.then(success);
@@ -20,16 +40,16 @@ function arenaService () {
   };
 
   self.addDepender = function (heroes, comment, username, success, fail) {
-    heroes.sort();
-    var name = heroes.join(';').toUpperCase();
-
+    var name = buildNames(heroes, fail);
+    if(!name) {
+      return;
+    }
     var findSavedDepender = function (callback) {
       var q = Depender.find({name: name}).exec();
       q.then(function (items) {
         callback(null, items);
       });
-    }
-
+    };
     var addNewDepender = function (dependers, callback) {
       if(dependers.length !== 0) {
         callback(null, dependers[0]);
@@ -48,7 +68,7 @@ function arenaService () {
     };
     var callbackCompleted = function (error, depender) {
       if(error) {
-        throw new Exception(error);
+        if(fail) fail(error);
       }
       if(success) {
         success(depender);
@@ -58,14 +78,13 @@ function arenaService () {
   };
 
   self.addAttacker = function (dependers, attackHeroes, comment, username, success, fail) {
-    dependers.sort();
-    dependersName = dependers.join(';').toUpperCase();
-
-    attackHeroes.sort();
-    var name = attackHeroes.join(';').toUpperCase();
+    var dependersName = buildNames(dependers, fail);
+    if(!dependersName) return;
+    var attackersName = buildNames(attackHeroes, fail);
+    if(!attackersName) return;
 
     var findAttackers = function (callback) {
-      var q = Attacker.find({name: name}).exec();
+      var q = Attacker.find({name: attackersName}).exec();
       q.then(function (attackers) {
         callback(null, attackers);
       });
@@ -76,7 +95,7 @@ function arenaService () {
         callback(null, attackers[0]);
       } else {
         var attacker = new Attacker({
-          name: name,
+          name: attackersName,
           insertUser: username,
           updateUser: username,
           comment: comment,
@@ -105,7 +124,15 @@ function arenaService () {
           });
         } else {
           var depender = dependers[0];
-          depender.attackers.push(attacker);
+          var contained = false;
+          depender.attackers.forEach(function (a) {
+            if(!contained) {
+              contained = a.name === attacker.name;
+            }
+          });
+          if(!contained) {
+            depender.attackers.push(attacker);
+          }
           depender.save(function (err) {
             callback(err, depender);
           });
@@ -115,12 +142,13 @@ function arenaService () {
 
     var callbackCompleted = function (error, depender) {
       if(error) {
-        throw new Exception(error);
+        if(fail) fail(error);
+        return;
       }
       if(success) {
         success(depender);
-      } else {
-        success("error name");
+      } else if(fail) {
+        fail(error);
       }
     };
     async.waterfall([findAttackers, addNewAttacker, applyToDepender], callbackCompleted);

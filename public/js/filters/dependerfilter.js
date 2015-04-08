@@ -5,18 +5,18 @@ angular.module('myApp').filter('dependerFilter', function () {
     if(!nameString) {
       return dependers;
     }
-    var names = nameString.split(/\W/).join(';').toUpperCase();
+    var names = nameString.toUpperCase().split(/\W/gi);
     if(names.length === 0) {
       return dependers;
     }
     var result = [];
     angular.forEach(dependers, function (depender) {
       var included = true;
+      var dependerNames = depender.name.split(/\W/gi);
       angular.forEach(names, function (name) {
-        if(included && depender.name.indexOf(name) < 0) {
-          included = false;
-        }
-      });
+        var subIncluded = (dependerNames.indexOf(name) >= 0);
+        included = included && subIncluded;
+      })
       if(included) {
         result.push(depender);
       }

@@ -16,7 +16,7 @@ angular.module('myApp').controller('ArenaAddMatchCtrl', function ($scope, $locat
         $scope.message.info('추가되었습니다.');
         $location.path('/arena');
       }, function (failMessage) {
-
+        $scope.message.error(failMessage);
       });
     }
   };

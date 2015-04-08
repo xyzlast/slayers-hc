@@ -9,7 +9,7 @@ angular.module('myApp').controller('MainCtrl', function ($scope, $timeout) {
     },
     error: function (message) {
       $scope.message.shown = true;
-      $scope.message.type = 'error';
+      $scope.message.type = 'danger';
       $scope.message.message = message;
     },
     hide: function () {

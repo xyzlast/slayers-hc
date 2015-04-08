@@ -15,7 +15,7 @@ angular.module('myApp').directive('heroRow', function () {
       if(!newValue) {
         return;
       }
-      var names = newValue.split(/\W/);
+      var names = newValue.replace(/\W+/gi, ',').split(/\W/);
       var heroes = [];
       angular.forEach(names, function (name) {
         heroes.push({
@@ -23,7 +23,6 @@ angular.module('myApp').directive('heroRow', function () {
           name: name
         });
       });
-      console.log(heroes);
       scope.heroes = heroes;
     });
     scope.heroes = [];

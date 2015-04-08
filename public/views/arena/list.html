@@ -36,10 +36,10 @@
       <tr ng-repeat="item in models.items | dependerFilter: models.names">
         <td><hero-row ng-model="item.name" size="48px" css="pull-left"></hero-row></td>
         <td>
-          <div ng-repeat="d in item.attackers">
+          <p ng-repeat="d in item.attackers">
             <hero-row ng-model="d.name" size="32px" css="pull-right"></hero-row>
             <br style="clear: both;"/>
-          </div>
+          </p>
         </td>
       </tr>
     </tbody>
