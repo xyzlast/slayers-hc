@@ -12,7 +12,6 @@ angular.module('myApp').directive('heroRow', function () {
 
   var postLink = function (scope, element, attrs) {
     scope.$watch(scope.ngModel, function (newValue, oldValue) {
-      console.log('watc');
       if(!newValue) {
         return;
       }

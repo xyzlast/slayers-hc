@@ -1,0 +1,61 @@
+<div class="alert alert-warning" role="alert">주의사항 : 이긴 조합만 넣어주세요.</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">방어측</h3>
+  </div>
+  <div class="panel-body">
+
+    <div class="form-group">
+      <label for="dependerNames">조합</label>
+      <div class="row">
+        <div class="col-md-6">
+          <input type="text" class="form-control"
+            id="dependerNames"
+            ng-model="models.depender"
+            placeholder="방어측 조합을 적어주세요.">
+        </div>
+        <div class="col-md-6">
+          <hero-row ng-model="models.depender" css="pull-left" size="48px"></hero-row>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="dependerComment">메모</label>
+      <input id="dependerComment" type="text"
+             class="form-control"
+             placeholder="방어측에 대해서 특이 사항이 있으면 적어주세요."
+             ng-model="models.dependerComment"/>
+    </div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">공격측(counter)</h3>
+  </div>
+  <div class="panel-body">
+    <div class="form-group">
+      <label for="attackerNames">조합</label>
+      <div class="row">
+        <div class="col-md-6">
+          <input type="text" class="form-control"
+                 id="attackerNames"
+                 ng-model="models.attacker"
+                 placeholder="공격측 이긴 조합을 넣어주세요.">
+        </div>
+        <div class="col-md-6">
+          <hero-row ng-model="models.attacker" css="pull-left" size="48px"></hero-row>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="attackerComment">메모</label>
+      <input id="attackerComment" type="text"
+             class="form-control"
+             placeholder="공격측에 대해서 특이 사항이 있으면 적어주세요."
+             ng-model="models.attackerComment"/>
+    </div>
+  </div>
+</div>
+<button type="button" class="btn btn-primary btn-lg btn-block" ng-click="buttons.save()">저장</button>

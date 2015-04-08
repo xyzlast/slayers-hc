@@ -1,17 +1,24 @@
 'use sticts';
 
-angular.module('myApp').controller('ArenaListCtrl', function ($scope, arenaService) {
+angular.module('myApp').controller('ArenaListCtrl', function ($scope, $location, ArenaService) {
   var self = this;
 
   $scope.models = {
-    names: 'CW;EB;MY;SIL;VW',
+    names: '',
     items: []
   };
 
+  $scope.buttons = {
+    moveToAdd: function () {
+      $location.path('/arena/add');
+    }
+  };
+
   self.init = function () {
-    arenaService.list(function (items) {
+    ArenaService.list(function (items) {
       $scope.models.items = items;
     });
   };
+
   self.init();
 });

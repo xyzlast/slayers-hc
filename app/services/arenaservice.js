@@ -10,7 +10,7 @@ function arenaService () {
   var self = this;
 
   self.list = function (success, fail) {
-    var q = Depender.find().populate('attackers').exec();
+    var q = Depender.find({ deleted: false }).populate('attackers').exec();
     q.then(success);
   };
 
@@ -38,7 +38,8 @@ function arenaService () {
           name: name,
           comment: comment,
           insertUser: username,
-          updateUser: username
+          updateUser: username,
+          deleted: false
         });
         d.save(function (err) {
           callback(err, d);
@@ -78,7 +79,8 @@ function arenaService () {
           name: name,
           insertUser: username,
           updateUser: username,
-          comment: comment
+          comment: comment,
+          deleted: false
         });
         attacker.save(function (err) {
           callback(err, attacker);
@@ -87,7 +89,7 @@ function arenaService () {
     };
 
     var applyToDepender = function (attacker, callback) {
-      var q = Depender.find({name: dependersName}).exec();
+      var q = Depender.find({name: dependersName, deleted: false}).exec();
       q.then(function (dependers) {
         if(dependers.length === 0) {
           var depender = new Depender({
@@ -95,6 +97,7 @@ function arenaService () {
             comment: comment,
             insertUser: username,
             updateUser: username,
+            deleted: false,
             attackers: [ attacker ]
           });
           depender.save(function (err) {
@@ -116,6 +119,8 @@ function arenaService () {
       }
       if(success) {
         success(depender);
+      } else {
+        success("error name");
       }
     };
     async.waterfall([findAttackers, addNewAttacker, applyToDepender], callbackCompleted);

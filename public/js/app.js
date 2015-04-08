@@ -12,7 +12,16 @@ angular.module('myApp', [
     .when('/', {
       templateUrl: '/views/arena/list.html',
       controller: 'ArenaListCtrl'
-    });
+    })
+    .when('/arena', {
+      templateUrl: '/views/arena/list.html',
+      controller: 'ArenaListCtrl'
+    })
+    .when('/arena/add', {
+      templateUrl: '/views/arena/addmatch.html',
+      controller: 'ArenaAddMatchCtrl'
+    })
+    ;
     // .when('/game/day', {
     //   templateUrl: '/views/game/list.html',
     //   controller: 'GamesInDayCtrl'

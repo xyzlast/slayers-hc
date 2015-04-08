@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<button type="button" class="btn btn-default btn-lg btn-block">추가</button>
+<button type="button" class="btn btn-default btn-lg btn-block" ng-click="buttons.moveToAdd()">추가</button>
 <br/>
 
 <div class="panel panel-default">
@@ -33,7 +33,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in models.items">
+      <tr ng-repeat="item in models.items | dependerFilter: models.names">
         <td><hero-row ng-model="item.name" size="48px" css="pull-left"></hero-row></td>
         <td>
           <div ng-repeat="d in item.attackers">

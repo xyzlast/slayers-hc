@@ -6,6 +6,7 @@ var DependerSchema = new Schema({
   comment: String,
   insertUser: String,
   updateUser: String,
+  deleted: Boolean,
   attackers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Attacker' }]
 });
 DependerSchema.virtual('date').get(function () {

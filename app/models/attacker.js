@@ -5,7 +5,8 @@ var AttackerSchema = new Schema({
   name: String,
   comment: String,
   insertUser: String,
-  updateUser: String
+  updateUser: String,
+  deleted: Boolean
 });
 AttackerSchema.virtual('date').get(function () {
   return this._id.getTimestamp();
