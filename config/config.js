@@ -26,8 +26,8 @@ var config = {
     app: {
       name: 'slayers'
     },
-    port: 3000,
-    db: 'mongodb://localhost/slayers-production'
+    port: 80,
+    db: process.env.MONGOLAB_URI
   }
 };
 
