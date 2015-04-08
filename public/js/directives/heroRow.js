@@ -3,7 +3,8 @@
 angular.module('myApp').directive('heroRow', function () {
   var template = function (element, attrs) {
     var size = attrs.size;
-    return '<div class="pull-left" style="padding-right: 10px;" ng-repeat="h in heroes">' +
+    var cssClass = attrs.css;
+    return '<div class="' + cssClass + '" style="padding-right: 10px;" ng-repeat="h in heroes">' +
       '<img class="img-responsive img-rounded" style="width: ' + size + ';" alt="" src="{{h.img}}">' +
       '<center><span class="font-mini">{{h.name}}</span></center>' +
       '</div>';

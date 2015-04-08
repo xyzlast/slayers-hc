@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+.font-mini { font-size: 80%; text-align: center; }
+.pull-right .dropdown-menu {
+    left: auto;
+    right: 0;
+}
