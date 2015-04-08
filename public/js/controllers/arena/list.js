@@ -27,6 +27,7 @@ angular.module('myApp').controller('ArenaListCtrl', function ($scope, $location,
 
   self.init = function () {
     ArenaService.list(function (items) {
+      items.reverse();
       self.models.items = items;
       self.methods.doFilterItems();
     });
