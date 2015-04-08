@@ -88,4 +88,13 @@ angular.module('myApp', [
   });
   RestangularProvider.setBaseUrl('/api');
   RestangularProvider.setRequestSuffix('.json');
+  RestangularProvider.setErrorInterceptor(function (response) {
+    if(response.status == '401') {
+      window.location.href = '/auth/google';
+    } else if (response.status == '403') {
+      var next = window.location.pathname + window.location.hash;
+      window.location.href = '/accounts/login/?next=' + next;
+    }
+    return response;
+  });
 });

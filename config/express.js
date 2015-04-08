@@ -45,9 +45,9 @@ module.exports = function(app, config) {
     }
   };
 
-  app.get('/api/*', function (req, res, next) {
-    checkAuth(req, res, next);
-  });
+  // app.get('/api/*', function (req, res, next) {
+  //   checkAuth(req, res, next);
+  // });
 
   app.post('/api/*', function (req, res, next) {
     checkAuth(req, res, next);

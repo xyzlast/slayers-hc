@@ -25,19 +25,22 @@
 <div class="panel panel-default">
   <!-- Default panel contents -->
   <div class="panel-heading">VS Results</div>
-  <table class="table table-striped table-condensed">
-    <thead>
+  <table class="table table-bordered table-condensed">
+    <thead style="text-align:center;text-weight:bold">
       <tr>
-        <td>Loser</td>
-        <td>Winner</td>
+        <td style="background-color:red">Loser</td>
+        <td style="background-color:green">Winner</td>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="item in models.items | dependerFilter: models.names">
-        <td><hero-row ng-model="item.name" size="48px" css="pull-left"></hero-row></td>
+      <tr ng-show="models.items.length == 0">
+        <td colspan="2" style="text-align:center"><h3>검색된 결과가 없습니다.</h3></td>
+      </tr>
+      <tr ng-repeat="item in models.items">
+        <td><hero-row ng-model="item.name" size="32px" css="pull-left"></hero-row></td>
         <td>
           <p ng-repeat="d in item.attackers">
-            <hero-row ng-model="d.name" size="32px" css="pull-right"></hero-row>
+            <hero-row ng-model="d.name" size="28px" css="pull-right"></hero-row>
             <br style="clear: both;"/>
           </p>
         </td>
