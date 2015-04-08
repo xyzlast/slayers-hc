@@ -1,1 +1,23 @@
 this is list html
+<input type="text" ng-model="models.names"/>
+<br/>
+
+<table class="table">
+  <thead>
+    <tr>
+      <td>방어측</td>
+      <td>공격측</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in models.items">
+      <td><hero-row ng-model="item.name" size="32px"></hero-row></td>
+      <td>
+        <div ng-repeat="d in item.attackers">
+          <hero-row ng-model="d.name" size="24px"></hero-row>
+          <br style="clear: both;"/>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -9,7 +9,7 @@ var config = {
       name: 'slayers'
     },
     port: 3000,
-    db: 'mongodb://localhost/slayers-development'
+    db: 'mongodb://localhost/slayers-test'
   },
 
   test: {
