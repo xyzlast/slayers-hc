@@ -11,7 +11,7 @@
           <input type="text" class="form-control"
             id="dependerNames"
             ng-model="models.depender"
-            placeholder="패한측 조합을 적어주세요.">
+            placeholder="Loser 조합을 적어주세요.">
         </div>
         <div class="col-md-6">
           <hero-row ng-model="models.depender" css="pull-left" size="48px"></hero-row>
@@ -22,7 +22,7 @@
       <label for="dependerComment">메모</label>
       <input id="dependerComment" type="text"
              class="form-control"
-             placeholder="방어측에 대해서 특이 사항이 있으면 적어주세요."
+             placeholder="조합에 대해서 특이 사항이 있으면 적어주세요."
              ng-model="models.dependerComment"/>
     </div>
   </div>
@@ -41,7 +41,7 @@
           <input type="text" class="form-control"
                  id="attackerNames"
                  ng-model="models.attacker"
-                 placeholder="공격측 이긴 조합을 넣어주세요.">
+                 placeholder="Winner 조합을 넣어주세요.">
         </div>
         <div class="col-md-6">
           <hero-row ng-model="models.attacker" css="pull-left" size="48px"></hero-row>
@@ -52,7 +52,7 @@
       <label for="attackerComment">메모</label>
       <input id="attackerComment" type="text"
              class="form-control"
-             placeholder="공격측에 대해서 특이 사항이 있으면 적어주세요."
+             placeholder="Winner에 대해서 특이 사항이 있으면 적어주세요."
              ng-model="models.attackerComment"/>
     </div>
   </div>

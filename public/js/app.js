@@ -10,8 +10,8 @@ angular.module('myApp', [
 ]).config(function($routeProvider, RestangularProvider, $locationProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: '/views/arena/list.html',
-      controller: 'ArenaListCtrl'
+      templateUrl: '/views/home.html',
+      controller: 'HomeCtrl'
     })
     .when('/arena', {
       templateUrl: '/views/arena/list.html',

@@ -1,6 +1,7 @@
 var express = require('express'), router = express.Router();
 var arenaService = require('../services/arenaservice.js');
 var jsonUtil = require('../utils/jsonutil.js');
+var authUtil = require('../utils/authutil.js');
 
 module.exports = function (app) {
   app.use('/api/arena', router);
@@ -23,5 +24,6 @@ router.post('/match.json', function (req, res) {
   var fail = function (message) {
     res.json(jsonUtil.buildJson(false, message, message));
   };
-  arenaService.addAttacker(dependerNames, attackerNames, attackerComment, 'ykyoon', success, fail);
+  var username = authUtil.getUser(req).email;
+  arenaService.addAttacker(dependerNames, attackerNames, attackerComment, username, success, fail);
 });
