@@ -26,7 +26,7 @@ var config = {
     app: {
       name: 'slayers'
     },
-    port: 80,
+    port: process.env.PORT,
     db: process.env.MONGOLAB_URI
   }
 };
