@@ -2,17 +2,17 @@ var config = require('../../config/config.js');
 var schemaConfig = require('../../config/schemaConfig.js');
 var service = require('../../app/services/arenaservice.js');
 
-describe('arenaService.list', function () {
-  beforeEach(function (done) {
-    service.list(function (data) {
-      console.log(data);
-    });
-  });
+// describe('arenaService.list', function () {
+//   beforeEach(function (done) {
+//     service.list(function (data) {
+//       console.log(data);
+//     });
+//   });
 
-  it('test', function () {
+//   it('test', function () {
 
-  });
-});
+//   });
+// });
 
 
 // describe('arenaService.addDepender', function () {

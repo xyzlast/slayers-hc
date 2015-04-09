@@ -37,7 +37,7 @@ angular.module('myApp').controller('ArenaListCtrl', function ($scope, $location,
       }
       self.methods.doFilterItems();
     });
-    self.models.filter = $filter('dependerFilter');
+    self.models.filter = $filter('arenaMatchFilter');
   };
 
   self.init();

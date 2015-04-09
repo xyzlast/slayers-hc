@@ -1,5 +1,6 @@
 var express = require('express'), router = express.Router();
 var arenaService = require('../services/arenaservice.js');
+var arenaMatchService = require('../services/arenamatchservice.js');
 var jsonUtil = require('../utils/jsonutil.js');
 var authUtil = require('../utils/authutil.js');
 
@@ -8,7 +9,7 @@ module.exports = function (app) {
 };
 
 router.get('/list.json', function (req, res) {
-  arenaService.list(function (items) {
+  arenaMatchService.list(function (items) {
     res.json(jsonUtil.buildJson(true, items));
   });
 });
