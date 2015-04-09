@@ -9,7 +9,7 @@ angular.module('myApp').controller('HeroListCtrl', function ($scope) {
 'NA.jpg', 'NEC.jpg', 'OC.jpg', 'PA.jpg', 'PHO.jpg', 'PK.jpg', 'PO.jpg', 'PS.jpg', 'PSY.jpg',
 'PT.jpg', 'RM.jpg', 'SH.jpg', 'SIL.jpg', 'SK.jpg', 'SL.jpg', 'SLORD.jpg', 'SM.jpg', 'SNI.jpg',
 'SO.jpg', 'SSH.jpg', 'SUCCU.jpg', 'SUM.jpg', 'TS.jpg', 'VS.jpg', 'VW.jpg', 'WC.jpg', 'WD.jpg',
-'WM.jpg', 'WMONK.jpg', 'WS.jpg'];
+'WMONK.jpg', 'WM.jpg', 'WS.jpg'];
   var nameData = ['Admiral (ADM)', 'Arcane Sapper (AS)', 'Ancient Protector (AP)', 'Brute (BRU)',
 'Bear Warrior (BW)', 'Chaplain (CHAP)', 'Cleric (CLER)', 'Cloud Walker (CW)', 'Commander (CR)',
 'Commando (COM)', 'Disease Bringer (DB)', 'Death Bringer (DEB)', 'Deathgore (DG)', 'Deathknight (DK)',
