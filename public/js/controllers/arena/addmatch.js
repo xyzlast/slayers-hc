@@ -4,20 +4,20 @@ angular.module('myApp').controller('ArenaAddMatchCtrl', function ($scope, $locat
   var self = this;
 
   $scope.models = {
-    depender: '',
-    dependerComment: '',
-    attachker: '',
-    attackerComment: ''
+    winner: '',
+    loser: ''
   };
 
   $scope.buttons = {
     save: function () {
-      ArenaService.add($scope.models, function (jsonResult) {
-        $scope.message.info('추가되었습니다.');
-        $location.path('/arena');
-      }, function (failMessage) {
-        $scope.message.error(failMessage);
-      });
+      if(confirm('추가하시겠습니까?')) {
+        ArenaService.add($scope.models, function (jsonResult) {
+          $scope.message.info('추가되었습니다.');
+          $location.path('/arena');
+        }, function (failMessage) {
+          $scope.message.error(failMessage);
+        });
+      }
     }
   };
   self.init = function () {

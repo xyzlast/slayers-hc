@@ -15,16 +15,16 @@ router.get('/list.json', function (req, res) {
 });
 
 router.post('/match.json', function (req, res) {
-  var dependerNames = req.body.depender.split(/\W/);
-  var dependerComment = req.body.dependerComment;
-  var attackerNames = req.body.attacker.split(/\W/);
-  var attackerComment = req.body.attackerComment;
+  var winner = req.body.winner.split(/\W/);
+  var loser = req.body.loser.split(/\W/);
+
   var success = function (message) {
     res.json(jsonUtil.buildJson(true, message, message));
   };
   var fail = function (message) {
     res.json(jsonUtil.buildJson(false, message, message));
   };
+  //TODO: email이외에 이름으로 처리할것.
   var username = authUtil.getUser(req).email;
-  arenaService.addAttacker(dependerNames, attackerNames, attackerComment, username, success, fail);
+  arenaMatchService.add(winner, loser, username, 'init', success, fail);
 });
