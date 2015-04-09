@@ -21,6 +21,10 @@ angular.module('myApp', [
       templateUrl: '/views/arena/addmatch.html',
       controller: 'ArenaAddMatchCtrl'
     })
+    .when('/hero/list', {
+      templateUrl: '/views/hero/list.html',
+      controller: 'HeroListCtrl'
+    })
     ;
     // .when('/game/day', {
     //   templateUrl: '/views/game/list.html',

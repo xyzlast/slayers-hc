@@ -1,0 +1,15 @@
+<table class="table">
+  <thead>
+    <tr>
+      <td>image</td>
+      <td>이름(약어)</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="hero in models.heroes">
+      <td><img src="{{hero.img}}" style="width:48px"/></td>
+      <td>{{hero.name}}</td>
+    </tr>
+  </tbody>
+
+</table>

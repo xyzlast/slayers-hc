@@ -25,6 +25,6 @@ router.post('/match.json', function (req, res) {
     res.json(jsonUtil.buildJson(false, message, message));
   };
   //TODO: email이외에 이름으로 처리할것.
-  var username = authUtil.getUser(req).email;
+  var username = authUtil.getUser(req).emails[0];
   arenaMatchService.add(winner, loser, username, 'init', success, fail);
 });

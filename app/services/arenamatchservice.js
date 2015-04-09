@@ -10,7 +10,7 @@ function ArenaMatchService () {
   var self = this;
 
   self.list = function (success) {
-    var q = ArenaMatch.find({ deleted: false }).sort({'date': -1}).exec();
+    var q = ArenaMatch.find({ deleted: false }).sort({'date': 1}).exec();
     q.then(function (matches) {
       if(success) {
         success(matches);
