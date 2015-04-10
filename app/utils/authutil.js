@@ -40,4 +40,10 @@ function AuthUtil() {
       return false;
     }
   };
+
+  self.getUser = function (req, callback) {
+    self.checkAuth(req, function (data) {
+      callback(data.user);
+    });
+  };
 };
