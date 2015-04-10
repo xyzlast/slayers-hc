@@ -111,6 +111,9 @@ angular.module('myApp', [
     } else if (response.status == '403.1') {
       window.alert('게임 이름이 등록되어 있고, 인증을 기다리고 있습니다. 카톡 대화방에서 권스에게 이야기주세요.');
       window.location.href = '/';
+    } else if (response.status == '403.2') {
+      window.alert('관리자 권한이 필요합니다.');
+      window.location.href = '/';
     }
     return response;
   });

@@ -54,6 +54,14 @@ module.exports = function(app, config) {
     checkAuth(req, res, next);
   });
 
+  app.get('/api/user/list.json', function (req, res, next) {
+    var master = authUtil.isMaster(req);
+    if(master) {
+      next();
+    } else {
+      res.status('403.2').send('');
+    }
+  });
 
   app.get('/api/monitoring.json', function(req, res) {
     res.json({

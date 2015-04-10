@@ -1,0 +1,16 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <td>Username</td>
+      <td>email</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="user in models.users">
+      <td>{{user.username}}</td>
+      <td>{{user.email}}</td>
+      <td ng-show="!user.accepted"><button class="btn" ng-click="buttons.accept(user._id)">승인</button></td>
+    </tr>
+  </tbody>
+</table>

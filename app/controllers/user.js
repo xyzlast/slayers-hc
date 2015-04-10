@@ -72,12 +72,12 @@ router.get('/list.json', function (req, res) {
 
 router.post('/accept.json', function (req, res) {
   var id = req.body.id;
-  userService.accept (id, function (message) {
+  userService.accept(id, function (message) {
     res.json(jsonUtil.buildJson(true, message, message));
   });
 });
 
-router.post('/resit.json', function (req, res) {
+router.post('/regist.json', function (req, res) {
   var username = req.body.username;
   var userJson = req.session.passport.user._json;
   var emails = [];
@@ -85,7 +85,7 @@ router.post('/resit.json', function (req, res) {
     emails.push(email.value);
   });
   var email = emails[0];
-  userService.resit(username, email, function (message) {
+  userService.regist(username, email, function (message) {
     res.json(jsonUtil.buildJson(true, message, message));
   }, function (message) {
     res.json(jsonUtil.buildJson(true, message, message));

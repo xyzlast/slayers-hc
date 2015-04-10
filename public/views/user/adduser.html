@@ -1,0 +1,8 @@
+<form class="form-signin">
+  <h2 class="form-signin-heading">사용자 정보 입력</h2>
+  <label for="inputEmail" class="sr-only">게임이름</label>
+  <input type="text" id="inputEmail" class="form-control" placeholder="게임 이름을 넣어주세요.(ex: <S>권스)" required autofocus ng-model="models.username">
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="text" id="inputPassword" class="form-control" readonly="readonly" ng-value="user.email">
+  <button class="btn btn-lg btn-primary btn-block" ng-click="buttons.save()">Save</button>
+</form>
