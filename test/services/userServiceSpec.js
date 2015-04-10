@@ -47,3 +47,18 @@ describe('userService.getUser', function () {
     expect(user.username).toBe('권스');
   });
 });
+
+
+describe('userService.accept', function () {
+  beforeEach(function (done) {
+    var id = '552761e2592b51861f616aa9';
+    service.accept(id, function (message) {
+      expect(message).toBe('허가되었습니다.');
+      done();
+    });
+  });
+
+  it('userService.accept.test', function () {
+    expect(true).toBe(true);
+  });
+});
