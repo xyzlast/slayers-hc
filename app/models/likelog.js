@@ -6,4 +6,4 @@ var LikeLogSchema = new Schema({
   username: String,
   date: Date
 });
-mongoose.model('LikeLog', LikeLogAchema);
+mongoose.model('LikeLog', LikeLogSchema);

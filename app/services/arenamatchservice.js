@@ -83,7 +83,7 @@ function ArenaMatchService () {
       var log = new LikeLog({
         matchId: id,
         username: username,
-        date: new Date();
+        date: new Date()
       });
       log.save(function (err) {
         callback(err, log);

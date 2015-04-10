@@ -12,7 +12,6 @@ describe('arenaMatchService.list', function () {
   });
 
   it('arenaMatchService.list.test', function () {
-    console.log(checkData);
     expect(!!checkData).toBe(true);
   });
 });
@@ -35,7 +34,6 @@ describe('arenaMatchService.add', function () {
   });
 
   it('arenaMatchService.add.test', function () {
-    console.log('test');
     expect(!!checkData).toBe(true);
   });
 });
