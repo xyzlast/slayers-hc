@@ -33,9 +33,7 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-    <div class="container-fluid">
-
-    <div ng-controller="MainCtrl">
+    <div class="container-fluid" ng-controller="MainCtrl">
       <div class="row">
         <div class="col-md-12">
           <div ng-show="message.shown" class="alert alert-{{message.type}}" role="alert" style="position: block;width:100%">
@@ -43,14 +41,15 @@
             {{message.message}}
           </div>
         </div>
+        <div class="col-md-12" style="text-align:right">
+          <button class="btn btn-primary" ng-show="!user.login" ng-click="buttons.login()">Login with Google</button>
+          <button class="btn btn-primary" ng-show="user.login" ng-click="buttons.processUserAction()">
+            {{user.username}}({{user.email}})
+          </button>
+        </div>
       </div>
       <div ng-view=""></div>
-    </div>
-
     </div><!-- /.container -->
-
-
-
 
   <script src="components/jquery/dist/jquery.js"></script>
   <script src="components/angular/angular.js"></script>
@@ -70,8 +69,11 @@
   <script src="/js/controllers/hero/list.js"></script>
   <script src="/js/controllers/arena/list.js"></script>
   <script src="/js/controllers/arena/addmatch.js"></script>
+  <script src="/js/controllers/user/adduser.js"></script>
+  <script src="/js/controllers/user/list.js"></script>
   <script src="/js/directives/heroRow.js"></script>
   <script src="/js/services/arenaService.js"></script>
+  <script src="/js/services/userService.js"></script>
   <script src="/js/filters/dependerfilter.js"></script>
   <script src="/js/filters/arenamatchfilter.js"></script>
   <script>

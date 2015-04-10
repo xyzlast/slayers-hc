@@ -1,31 +1,31 @@
+var userService = require('../services/userservice');
+
 module.exports = new AuthUtil();
 
 function AuthUtil() {
   var self = this;
-  self.isMaster = function (req) {
-    try {
-      var user = req.session.passport.user._json;
-      return user.email === 'xyzlast@gmail.com';
-    } catch(e) {
-      return false;
-    }
-  };
 
-  self.isAuthorized = function (req) {
+  self.checkAuth = function (req, callback) {
     try {
-      var user = req.session.passport.user._json;
-      return true;
+      var userJson = req.session.passport.user._json;
+      var emails = [];
+      userJson.emails.forEach(function (email) {
+        emails.push(email.value);
+      });
+      userService.getUser(emails, function (result) {
+        console.log(result);
+        if(result.ok) {
+          callback({
+            status: result.user.accepted ? '20' : '403.1',
+            user: result.user
+          });
+        } else {
+          callback({ status: '403', user: 'null' });
+        }
+      });
     } catch(e) {
-      return false;
-    }
-  };
-
-  self.getUser = function (req) {
-    try {
-      var user = req.session.passport.user._json;
-      return user;
-    } catch(e) {
-      return null;
+      console.log(e);
+      callback({ status: '401', user: null });
     }
   };
 };

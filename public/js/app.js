@@ -25,6 +25,14 @@ angular.module('myApp', [
       templateUrl: '/views/hero/list.html',
       controller: 'HeroListCtrl'
     })
+    .when('/user/add', {
+      templateUrl: '/views/user/adduser.html',
+      controller: 'UserAddCtrl'
+    })
+    .when('/user/list', {
+      templateUrl: '/views/user/list.html',
+      controller: 'UserListCtrl'
+    })
     ;
     // .when('/game/day', {
     //   templateUrl: '/views/game/list.html',
@@ -94,10 +102,15 @@ angular.module('myApp', [
   RestangularProvider.setRequestSuffix('.json');
   RestangularProvider.setErrorInterceptor(function (response) {
     if(response.status == '401') {
+      window.alert('구글 로그인이 필요합니다. 인증을 진행합니다.');
       window.location.href = '/auth/google';
     } else if (response.status == '403') {
-      var next = window.location.pathname + window.location.hash;
+      window.alert('게임 이름 등록이 필요합니다. 등록 페이지로 이동합니다.');
+      //TODO : 등록 페이지
       window.location.href = '/accounts/login/?next=' + next;
+    } else if (response.status == '403.1') {
+      window.alert('게임 이름이 등록되어 있고, 인증을 기다리고 있습니다. 카톡 대화방에서 권스에게 이야기주세요.');
+      window.location.href = '/';
     }
     return response;
   });

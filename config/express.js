@@ -33,27 +33,24 @@ module.exports = function(app, config) {
   app.use(methodOverride());
 
   var checkAuth = function (req, res, next) {
-    if(authUtil.isAuthorized(req)) {
-      next();
-    } else {
-      // if(authUtil.isAuthorized(req)) {
-      //   res.status(403).send('you are not master');
-      // } else {
-      //   res.status(401).send('google oauth request');
-      // }
-      res.status(401).send('google oauth request');
-    }
+    authUtil.checkAuth(req, function (result) {
+      if(result.status === '20') {
+        next();
+      } else {
+        res.status(result.status).send('')
+      }
+    });
   };
 
-  // app.get('/api/*', function (req, res, next) {
-  //   checkAuth(req, res, next);
-  // });
-
-  app.post('/api/*', function (req, res, next) {
+  app.get('/api/arena/*', function (req, res, next) {
     checkAuth(req, res, next);
   });
 
-  app.delete('/api/*', function (req, res, next) {
+  app.post('/api/arena/*', function (req, res, next) {
+    checkAuth(req, res, next);
+  });
+
+  app.delete('/api/arena/*', function (req, res, next) {
     checkAuth(req, res, next);
   });
 
