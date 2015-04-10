@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var ArenaMatch = mongoose.model('ArenaMatch');
+var LikeLog = mongoose.model('LikeLog');
 var ObjectId = mongoose.Types.ObjectId;
 var heroNameUtil = require('../utils/heronameutil.js');
 var async = require('async');
@@ -63,5 +64,39 @@ function ArenaMatchService () {
       }
     };
     async.waterfall([checkExistMatch, addMatch], callbackCompleted);
+  };
+
+  self.like = function (id, username, success, fail) {
+    var findMatch = function (callback) {
+      var q = ArenaMatch.findById(ObjectId(id)).exec();
+      q.then(function (match) {
+        callback(null, match);
+      });
+    };
+    var increaseScore = function (match, callback) {
+      match.score++;
+      match.save(function (error) {
+        callback(error, match);
+      });
+    };
+    var writeLikeLog = function (match, callback) {
+      var log = new LikeLog({
+        matchId: id,
+        username: username,
+        date: new Date();
+      });
+      log.save(function (err) {
+        callback(err, log);
+      });
+    };
+
+    var callbackCompleted = function (err, result) {
+      if(err) {
+        fail(err);
+      } else if(success) {
+        success(result);
+      }
+    };
+    async.waterfall([findMatch, increaseScore, writeLikeLog], callbackCompleted);
   };
 };
