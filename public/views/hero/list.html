@@ -10,6 +10,9 @@
     </tr>
   </thead>
   <tbody>
+    <tr ng-show="models.heroes.length == 0">
+      <td colspan="6">검색 결과가 없습니다.</td>
+    </tr>
     <tr ng-repeat="hero in models.heroes">
       <td><img src="/img/{{hero.name}}.jpg" style="width:48px"/></td>
       <td>{{hero.name}}</td>
