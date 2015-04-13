@@ -2,6 +2,7 @@
   <table class="table">
     <colgroup>
       <col width="50px"/>
+      <col width="100px"/>
     </colgroup>
     <tr>
       <td rowspan="3">
@@ -9,18 +10,21 @@
       </td>
       <td>약어</td>
       <td>{{hero.name}}</td>
+      <td></td>
     </tr>
     <tr>
       <td>영문이름</td>
       <td>{{hero.engName}}</td>
+      <td></td>
     </tr>
     <tr>
       <td>한글이름</td>
       <td>{{hero.hanName}}</td>
+      <td></td>
     </tr>
     <tr>
-      <td colspan="2">
-        <p ng-show="hero.comments.length == 0">등록된 comment가 없습니다.</p>
+      <td colspan="3">
+        <p ng-show="hero.comments.length == 0" style="text-align:center">등록된 comment가 없습니다.</p>
         <ul>
           <li ng-repeat="comment in hero.comments">
             {{comment.username}} : {{comment.comment}}
