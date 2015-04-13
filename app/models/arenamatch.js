@@ -8,6 +8,7 @@ var ArenaMatchSchema = new Schema({
   username: String,
   deleted: Boolean,
   score: Number,
+  unscore: Number,
   date: Date
 });
 mongoose.model('ArenaMatch', ArenaMatchSchema);

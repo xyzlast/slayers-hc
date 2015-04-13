@@ -49,6 +49,7 @@ function ArenaMatchService () {
         username: username,
         date: new Date(),
         score: 1,
+        unscore: 0,
         comment: comment,
         deleted: false
       });
@@ -75,7 +76,10 @@ function ArenaMatchService () {
       });
     };
     var decreaseScore = function (match, callback) {
-      match.score--;
+      if(!match.unscore) {
+        match.unscore = 0;
+      }
+      match.unscore++;
       match.save(function (error) {
         callback(error, match);
       });
