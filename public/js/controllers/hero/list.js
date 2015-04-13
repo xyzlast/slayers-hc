@@ -28,12 +28,12 @@ angular.module('myApp').controller('HeroListCtrl', function ($scope, HeroService
     }
   };
 
-  self.mothods = {
+  self.methods = {
     load: function () {
       HeroService.list(function (heroes) {
         $scope.models.heroes = heroes;
       }, $scope.message.error);
-    };
+    }
   };
 
   self.init = function () {
