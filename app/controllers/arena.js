@@ -24,12 +24,25 @@ router.post('/match.json', function (req, res) {
   var fail = function (message) {
     res.json(jsonUtil.buildJson(false, message, message));
   };
-  //TODO: email이외에 이름으로 처리할것.
   var username = authUtil.getUser(req, function (user) {
     if(user == null) {
       return;
     } else {
       arenaMatchService.add(winner, loser, user.username, 'init', success, fail);
     }
+  });
+});
+
+router.post('/like.json', function (req, res) {
+  var id = req.body.id;
+  authUtil.getUser(req, function (user) {
+    arenaMatchService.like(id, user.username, res.json);
+  });
+});
+
+router.post('/unlike.json', function (req, res) {
+  var id = req.body.id;
+  authUtil.getUser(req, function (user) {
+    arenaMatchService.unlike(id, user.username, res.json);
   });
 });

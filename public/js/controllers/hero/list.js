@@ -23,14 +23,21 @@ angular.module('myApp').controller('HeroListCtrl', function ($scope, HeroService
       HeroService.writeComment(heroId, comment, function (jsonResult) {
         angular.element('#commentModal').modal('hide');
         $scope.message.info('등록되었습니다.');
+        self.methods.load();
       }, $scope.message.error);
     }
   };
 
+  self.mothods = {
+    load: function () {
+      HeroService.list(function (heroes) {
+        $scope.models.heroes = heroes;
+      }, $scope.message.error);
+    };
+  };
+
   self.init = function () {
-    HeroService.list(function (heroes) {
-      $scope.models.heroes = heroes;
-    }, $scope.message.error);
+    self.methods.load();
   };
   self.init();
 });

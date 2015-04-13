@@ -4,6 +4,7 @@ var LikeLog = mongoose.model('LikeLog');
 var ObjectId = mongoose.Types.ObjectId;
 var heroNameUtil = require('../utils/heronameutil.js');
 var async = require('async');
+var jsonUtil = require('../utils.jsonutil.js');
 
 module.exports = new ArenaMatchService();
 
@@ -66,7 +67,41 @@ function ArenaMatchService () {
     async.waterfall([checkExistMatch, addMatch], callbackCompleted);
   };
 
-  self.like = function (id, username, success, fail) {
+  self.unlike = function (id, username, callback) {
+    var findMatch = function (callback) {
+      var q = ArenaMatch.findById(ObjectId(id)).exec();
+      q.then(function (match) {
+        callback(null, match);
+      });
+    };
+    var decreaseScore = function (match, callback) {
+      match.score--;
+      match.save(function (error) {
+        callback(error, match);
+      });
+    };
+    var writeUnLikeLog = function (match, callback) {
+      var log = new LikeLog({
+        matchId: id,
+        username: username,
+        type: 'UNLIKE',
+        date: new Date()
+      });
+      log.save(function (err) {
+        callback(err, log);
+      });
+    };
+    var callbackCompleted = function (err, result) {
+      if(err) {
+        completed(jsonUtil.buildJson(false, err, err));
+      } else {
+        completed(jsonUtil.buildJson(true, result, 'like completed'));
+      }
+    };
+    async.waterfall([findMatch, decreaseScore, writeUnLikeLog], callbackCompleted);
+  };
+
+  self.like = function (id, username, completed) {
     var findMatch = function (callback) {
       var q = ArenaMatch.findById(ObjectId(id)).exec();
       q.then(function (match) {
@@ -83,18 +118,18 @@ function ArenaMatchService () {
       var log = new LikeLog({
         matchId: id,
         username: username,
+        type: 'LIKE',
         date: new Date()
       });
       log.save(function (err) {
         callback(err, log);
       });
     };
-
     var callbackCompleted = function (err, result) {
       if(err) {
-        fail(err);
-      } else if(success) {
-        success(result);
+        completed(jsonUtil.buildJson(false, err, err));
+      } else {
+        completed(jsonUtil.buildJson(true, result, 'like completed'));
       }
     };
     async.waterfall([findMatch, increaseScore, writeLikeLog], callbackCompleted);
