@@ -36,13 +36,17 @@ router.post('/match.json', function (req, res) {
 router.post('/like.json', function (req, res) {
   var id = req.body.id;
   authUtil.getUser(req, function (user) {
-    arenaMatchService.like(id, user.username, res.json);
+    arenaMatchService.like(id, user.username, function (jsonResult) {
+      res.json(jsonResult);
+    });
   });
 });
 
 router.post('/unlike.json', function (req, res) {
   var id = req.body.id;
   authUtil.getUser(req, function (user) {
-    arenaMatchService.unlike(id, user.username, res.json);
+    arenaMatchService.unlike(id, user.username, function (jsonResult) {
+      res.json(jsonResult);
+    });
   });
 });

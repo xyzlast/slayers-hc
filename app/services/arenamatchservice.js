@@ -4,7 +4,7 @@ var LikeLog = mongoose.model('LikeLog');
 var ObjectId = mongoose.Types.ObjectId;
 var heroNameUtil = require('../utils/heronameutil.js');
 var async = require('async');
-var jsonUtil = require('../utils.jsonutil.js');
+var jsonUtil = require('../utils/jsonutil.js');
 
 module.exports = new ArenaMatchService();
 
@@ -67,7 +67,7 @@ function ArenaMatchService () {
     async.waterfall([checkExistMatch, addMatch], callbackCompleted);
   };
 
-  self.unlike = function (id, username, callback) {
+  self.unlike = function (id, username, completed) {
     var findMatch = function (callback) {
       var q = ArenaMatch.findById(ObjectId(id)).exec();
       q.then(function (match) {

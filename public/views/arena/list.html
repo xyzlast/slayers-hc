@@ -42,12 +42,12 @@
     </table>
     <div class="row">
       <div class="col-md-6">
-        <button class="btn btn-default btn-block">
+        <button class="btn btn-default btn-block" ng-click="buttons.like(item)">
           <span class="glyphicon glyphicon-thumbs-up"></span> 좋아요 <span class="badge">{{item.score}}</span>
         </button>
       </div>
       <div class="col-md-6">
-        <button class="btn btn-default btn-block">
+        <button class="btn btn-default btn-block" ng-click="buttons.unlike(item)">
           <span class="glyphicon glyphicon-thumbs-down"></span> 싫어요
         </button>
       </div>
