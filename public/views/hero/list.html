@@ -1,4 +1,41 @@
-<table class="table">
+<div ng-repeat="hero in models.heroes" class="panel panel-primary">
+  <table class="table">
+    <colgroup>
+      <col width="50px"/>
+    </colgroup>
+    <tr>
+      <td rowspan="3">
+        <img src="/img/{{hero.name}}.jpg" style="width:48px"/>
+      </td>
+      <td>약어</td>
+      <td>{{hero.name}}</td>
+    </tr>
+    <tr>
+      <td>영문이름</td>
+      <td>{{hero.engName}}</td>
+    </tr>
+    <tr>
+      <td>한글이름</td>
+      <td>{{hero.hanName}}</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <p ng-show="hero.comments.length == 0">등록된 comment가 없습니다.</p>
+        <ul>
+          <li ng-repeat="comment in hero.comments">
+            {{comment.username}} : {{comment.comment}}
+          </li>
+        </ul>
+      </td>
+      <td style="text-align:right">
+        <button ng-click="buttons.showModal(hero)">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+<!-- <table class="table">
   <thead>
     <tr>
       <td>아바타</td>
@@ -32,7 +69,7 @@
   </tbody>
 
 </table>
-
+ -->
 
 
 
