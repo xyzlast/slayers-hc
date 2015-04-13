@@ -11,6 +11,7 @@ angular.module('myApp').controller('HeroListCtrl', function ($scope, HeroService
   $scope.buttons = {
     showModal: function (hero) {
       $scope.models.selectedHero = hero;
+      $scope.models.heroComment = '';
       angular.element('#commentModal').modal('show');
     },
     writeComment: function () {

@@ -3,6 +3,7 @@ var Depender = mongoose.model('Depender');
 var Attacker = mongoose.model('Attacker');
 var User = mongoose.model('User');
 var ObjectId = mongoose.Types.ObjectId;
+var jsonUtil = require('../utils/jsonutil.js');
 var async = require('async');
 
 module.exports = new UserService();
@@ -64,6 +65,13 @@ function UserService () {
     var q = User.findByIdAndUpdate(ObjectId(id), {accepted: true}).exec();
     q.then(function (user) {
       success('허가되었습니다.');
+    });
+  };
+
+  self.update = function (id, username, callback) {
+    var q = User.findByIdAndUpdate(ObjectId(id), { username: username }).exec();
+    q.then(function (user) {
+      callback(jsonUtil.buildJson(true, user, 'update complted'));
     });
   };
 };
