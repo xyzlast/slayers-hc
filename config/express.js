@@ -50,7 +50,11 @@ module.exports = function(app, config) {
     checkAuth(req, res, next);
   });
 
-  app.delete('/api/arena/*', function (req, res, next) {
+  app.get('/api/hero/*', function (req, res, next) {
+    checkAuth(req, res, next);
+  });
+
+  app.post('/api/hero/*', function (req, res, next) {
     checkAuth(req, res, next);
   });
 

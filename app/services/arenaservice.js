@@ -4,9 +4,9 @@ var Attacker = mongoose.model('Attacker');
 var ObjectId = mongoose.Types.ObjectId;
 var async = require('async');
 
-module.exports = new arenaService();
+module.exports = new ArenaService();
 
-function arenaService () {
+function ArenaService () {
   var self = this;
 
   var buildNames = function(heroNames, fail) {

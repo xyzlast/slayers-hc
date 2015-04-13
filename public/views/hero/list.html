@@ -1,15 +1,54 @@
 <table class="table">
   <thead>
     <tr>
-      <td>image</td>
-      <td>이름(약어)</td>
+      <td>아바타</td>
+      <td>약어</td>
+      <td>영문이름</td>
+      <td>한글이름</td>
+      <td>Comment</td>
+      <td></td>
     </tr>
   </thead>
   <tbody>
     <tr ng-repeat="hero in models.heroes">
-      <td><img src="{{hero.img}}" style="width:48px"/></td>
+      <td><img src="/img/{{hero.name}}.jpg" style="width:48px"/></td>
       <td>{{hero.name}}</td>
+      <td>{{hero.engName}}</td>
+      <td>{{hero.hanName}}</td>
+      <td>
+        <ul>
+          <li ng-repeat="comment in hero.comments">
+            {{comment.username}} : {{comment.comment}}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <button ng-click="buttons.showModal(hero)"><span class="glyphicon glyphicon-pencil"></span></button>
+      </td>
     </tr>
   </tbody>
 
 </table>
+
+
+
+
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+          <img src="/img/{{models.selectedHero.name}}.jpg" style="width:24px"/> {{models.selectedHero.engName}}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" ng-model="models.heroComment" placeholder="영웅 평을 적어주세요."/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="buttons.writeComment()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
