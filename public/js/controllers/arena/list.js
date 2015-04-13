@@ -24,7 +24,10 @@ angular.module('myApp').controller('ArenaListCtrl', function ($scope, $location,
       if($window.confirm('반대 추천하시겠습니까?')) {
         ArenaService.unlike(hero._id, function (data) {
           $scope.message.info('반대추천되었습니다.');
-          hero.score--;
+          if(!hero.unscore) {
+            hero.unscore = 0;
+          }
+          hero.unscore++;
         }, $scope.message.error);
       }
     }
@@ -42,6 +45,11 @@ angular.module('myApp').controller('ArenaListCtrl', function ($scope, $location,
     load: function () {
       ArenaService.list(function (items) {
         items.reverse();
+        angular.forEach(items, function (item) {
+          if(!item.unscore) {
+            item.unscore = 0;
+          }
+        });
         self.models.items = items;
         self.methods.doFilterItems();
       });

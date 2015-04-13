@@ -17,8 +17,6 @@ router.get('/list.json', function (req, res) {
 router.post('/comment.json', function (req, res) {
   var heroId = req.body.heroId;
   var comment = req.body.comment;
-  console.log(heroId);
-  console.log(comment);
   var username = authUtil.getUser(req, function (user) {
     console.log(user);
     if(user == null) {
