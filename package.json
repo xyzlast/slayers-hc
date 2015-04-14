@@ -38,7 +38,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "grunt jasmine",
+    "test": "jasmine-node --color --autotest --watch app test --test-dir test",
     "postinstall": "bower install"
   },
   "author": "xyzlast@github.com",
