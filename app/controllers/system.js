@@ -19,8 +19,9 @@ var downloadJsonString = function (res, filename, jsonObj) {
 
 var writeJsonToFile = function (filename, jsonObj, callback) {
   var jsonString = JSON.stringify(jsonObj);
-  fs.writeFile(config.root + filename, jsonString, function (err) {
-    callback(null, config.root + '/' + filename);
+  var fileFullName = config.root + '/' + filename;
+  fs.writeFile(fileFullName, jsonString, function (err) {
+    callback(null, fileFullName);
   });
 };
 
@@ -58,8 +59,7 @@ router.get('/backup.json', function (req, res) {
       { path: results.likelog, name: 'likelog.json' },
       { path: results.heroes, name: 'heroes.json' },
       { path: results.comments, name: 'comments.json' },
-    ]);
-    // downloadJsonString(res, 'backup.json', results);
+    ], 'backup.zip');
   };
 
   async.parallel({
